@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # ship speed
-const SPEED: int = 120
+@export var speed: int = 120
 
 # player input actions
 const MOVE_LEFT_ACTION: StringName = "move_left"
@@ -24,7 +24,7 @@ func move() -> void:
 	var horizontal_direction: float = Input.get_axis(MOVE_LEFT_ACTION, MOVE_RIGHT_ACTION)
 	var vertical_direction: float = Input.get_axis(MOVE_UP_ACTION, MOVE_DOWN_ACTION)
 	var direction: Vector2 = Vector2(horizontal_direction, vertical_direction).normalized()
-	velocity = SPEED * direction
+	velocity = speed * direction
 	
 	if vertical_direction < 0:
 		animation_player.play(ANIMATION_UP)
