@@ -36,4 +36,4 @@ func move() -> void:
 	# move the ship in the direction according to player input
 	move_and_slide()
 	# keep the ship inside the viewport
-	global_position = global_position.clamp(Vector2(0, 0), get_viewport_rect().size)
+	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
