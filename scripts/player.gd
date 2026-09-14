@@ -29,9 +29,10 @@ func move() -> void:
 func keep_in_viewport() -> void:
 	if global_position.x < NEGATIVE_BOUNDS.x:
 		global_position.x = NEGATIVE_BOUNDS.x
-	if global_position.y < NEGATIVE_BOUNDS.y:
+	elif global_position.y < NEGATIVE_BOUNDS.y:
 		global_position.y = NEGATIVE_BOUNDS.y
+	
 	if global_position.x > POSITIVE_BOUNDS.x:
 		global_position.x = POSITIVE_BOUNDS.x
-	if global_position.y > POSITIVE_BOUNDS.y:
+	elif global_position.y > POSITIVE_BOUNDS.y:
 		global_position.y = POSITIVE_BOUNDS.y
