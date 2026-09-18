@@ -8,6 +8,7 @@ const MOVE_LEFT_ACTION: StringName = "move_left"
 const MOVE_RIGHT_ACTION: StringName = "move_right"
 const MOVE_UP_ACTION: StringName = "move_up"
 const MOVE_DOWN_ACTION: StringName = "move_down"
+const SHOOT_ACTION: StringName = "shoot"
 
 # ship animations
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -15,8 +16,15 @@ const ANIMATION_DEFAULT: StringName = "default"
 const ANIMATION_UP: StringName = "up"
 const ANIMATION_DOWN: StringName = "down" 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(SHOOT_ACTION):
+		shoot()
+
 func _physics_process(_delta: float) -> void:
 	move()
+
+func shoot() -> void:
+	print("Shoot!")
 
 # move the ship according to player input; keeps the ship inside the viewport
 func move() -> void:
