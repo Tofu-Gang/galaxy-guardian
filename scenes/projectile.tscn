@@ -51,7 +51,12 @@ sprite_frames = SubResource("SpriteFrames_c8fcr")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=617684586]
-visible = false
 position = Vector2(1, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jkngk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=945744140]
+position = Vector2(-2, 0)
+rect = Rect2(-10, -3, 4, 6)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
