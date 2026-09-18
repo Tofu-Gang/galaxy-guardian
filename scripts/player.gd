@@ -19,6 +19,9 @@ const ANIMATION_DOWN: StringName = "down"
 # custom signals
 signal shoot_projectile
 
+# ship muzzle; position of projectiles spawn
+@onready var muzzle: Marker2D = $Muzzle
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(SHOOT_ACTION):
 		shoot()
