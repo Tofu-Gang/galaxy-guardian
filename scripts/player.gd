@@ -11,10 +11,13 @@ const MOVE_DOWN_ACTION: StringName = "move_down"
 const SHOOT_ACTION: StringName = "shoot"
 
 # ship animations
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var main_animation_player: AnimationPlayer = $MainAnimationPlayer
+@onready var flash_animation_player: AnimationPlayer = $FlashAnimationPlayer
 const ANIMATION_DEFAULT: StringName = "default"
 const ANIMATION_UP: StringName = "up"
-const ANIMATION_DOWN: StringName = "down" 
+const ANIMATION_DOWN: StringName = "down"
+const ANIMATION_FLASH: StringName = "default"
+
 
 # custom signals
 signal shoot_projectile
@@ -24,12 +27,13 @@ signal shoot_projectile
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(SHOOT_ACTION):
-		shoot()
+		flash_animation_player.play(ANIMATION_FLASH)
 
 func _physics_process(_delta: float) -> void:
 	move()
 
 func shoot() -> void:
+	# currently called from the flash animation
 	shoot_projectile.emit()
 
 # move the ship according to player input; keeps the ship inside the viewport
@@ -41,11 +45,11 @@ func move() -> void:
 	velocity = speed * direction
 	
 	if vertical_direction < 0:
-		animation_player.play(ANIMATION_UP)
+		main_animation_player.play(ANIMATION_UP)
 	elif vertical_direction > 0:
-		animation_player.play(ANIMATION_DOWN)
+		main_animation_player.play(ANIMATION_DOWN)
 	else:
-		animation_player.play(ANIMATION_DEFAULT)
+		main_animation_player.play(ANIMATION_DEFAULT)
 		
 	# move the ship in the direction according to player input
 	move_and_slide()

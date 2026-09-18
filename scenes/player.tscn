@@ -4,10 +4,7 @@
 [ext_resource type="Script" uid="uid://crvfko1vcslma" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cap7ekcoi8wo1" path="res://assets/textures/player/player2.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://celft4fc4re0f" path="res://assets/textures/player/player3.png" id="4_qlg0r"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
-radius = 4.0
-height = 24.0
+[ext_resource type="Texture2D" uid="uid://cidu426tey7kq" path="res://assets/textures/projectile/flash.png" id="5_qlg0r"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -80,20 +77,83 @@ _data = {
 &"up": SubResource("Animation_tuyoq")
 }
 
+[sub_resource type="Animation" id="Animation_fjrip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "flash"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
+_data = {
+&"RESET": SubResource("Animation_fjrip"),
+&"default": SubResource("Animation_qlg0r")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
+radius = 4.0
+height = 24.0
+
 [node name="Player" type="CharacterBody2D" unique_id=400488155]
 motion_mode = 1
 script = ExtResource("1_g2els")
 
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1915650989]
+libraries/ = SubResource("AnimationLibrary_qhqgy")
+autoplay = &"default"
+
+[node name="FlashAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1407442302]
+libraries/ = SubResource("AnimationLibrary_tuyoq")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1676716265]
 texture = ExtResource("1_3vyb7")
+
+[node name="Flash" type="Sprite2D" parent="." unique_id=1938170460]
+visible = false
+position = Vector2(19, 0)
+texture = ExtResource("5_qlg0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1230319867]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_3vyb7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1915650989]
-libraries/ = SubResource("AnimationLibrary_qhqgy")
-autoplay = &"default"
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1650546572]
 position = Vector2(24, 0)
