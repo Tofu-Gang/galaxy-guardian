@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-# ship speed
+# ship speed; pixels per second
 @export var speed: int = 120
 
 # player input actions
