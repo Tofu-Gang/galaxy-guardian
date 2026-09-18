@@ -16,6 +16,9 @@ const ANIMATION_DEFAULT: StringName = "default"
 const ANIMATION_UP: StringName = "up"
 const ANIMATION_DOWN: StringName = "down" 
 
+# custom signals
+signal shoot_projectile
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(SHOOT_ACTION):
 		shoot()
@@ -24,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 	move()
 
 func shoot() -> void:
-	print("Shoot!")
+	shoot_projectile.emit()
 
 # move the ship according to player input; keeps the ship inside the viewport
 func move() -> void:
