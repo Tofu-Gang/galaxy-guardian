@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://00axwe4dj682"]
+
+[ext_resource type="Script" uid="uid://dlmcg2txya8ew" path="res://scripts/enemy_spawner.gd" id="1_ks1gq"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=1454835343]
+script = ExtResource("1_ks1gq")
+
+[node name="SpawnPositions" type="Node2D" parent="." unique_id=2097688069]
+position = Vector2(360, 0)
+
+[node name="SpawnPos_1" type="Marker2D" parent="SpawnPositions" unique_id=1945963737]
+position = Vector2(0, 15)
+
+[node name="SpawnPos_2" type="Marker2D" parent="SpawnPositions" unique_id=1401746055]
+position = Vector2(0, 45)
+
+[node name="SpawnPos_3" type="Marker2D" parent="SpawnPositions" unique_id=1068247357]
+position = Vector2(0, 75)
+
+[node name="SpawnPos_4" type="Marker2D" parent="SpawnPositions" unique_id=1199463596]
+position = Vector2(0, 105)
+
+[node name="SpawnPos_5" type="Marker2D" parent="SpawnPositions" unique_id=1546357498]
+position = Vector2(0, 135)
+
+[node name="SpawnPos_6" type="Marker2D" parent="SpawnPositions" unique_id=1767843338]
+position = Vector2(0, 165)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=606718380]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
